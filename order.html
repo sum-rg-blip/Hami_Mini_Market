@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order - Hami MiniMarket</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="images/3D Logo for Health Foods Business.png" alt="Logo" />
+      <h1>Hami MiniMarket</h1>
+    </div>
+    <div style="margin-left:auto;">
+      <a href="index.html" style="text-decoration:none;color:#355e3b;font-weight:500;">
+        ← Back to Shop
+      </a>
+    </div>
+  </header>
+
+  <main class="order-summary-container">
+    <h1>Order Summary</h1>
+
+    <section>
+      <h2>Your Items</h2>
+      <div id="summary-items"></div>
+    </section>
+
+    <section class="order-summary-totals">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="summary-subtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Discount</span>
+        <span id="summary-discount">-$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Tax (5%)</span>
+        <span id="summary-tax">$0.00</span>
+      </div>
+      <div class="cart-summary-row cart-summary-total">
+        <span>Total</span>
+        <span id="summary-total">$0.00</span>
+      </div>
+
+      <button id="confirm-order-btn" class="cart-checkout-btn" style="margin-top: 16px;">
+        Confirm Order
+      </button>
+    </section>
+  </main>
+
+  <script src="storage.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const itemsContainer = document.getElementById("summary-items");
+      const subtotalEl = document.getElementById("summary-subtotal");
+      const discountEl = document.getElementById("summary-discount");
+      const taxEl = document.getElementById("summary-tax");
+      const totalEl = document.getElementById("summary-total");
+      const btn = document.getElementById("confirm-order-btn");
+
+      const items = CartModule.getItems();
+      const totals = CartModule.getTotals();
+
+      if (!items.length) {
+        itemsContainer.innerHTML =
+          "<p>Your cart is empty. Go back and add some products.</p>";
+      } else {
+        items.forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML = `
+            <div class="cart-item-info">
+              <span class="cart-item-name">${item.name}</span>
+              <span class="cart-item-price">$${item.price.toFixed(
+                2
+              )} x ${item.qty}</span>
+            </div>
+            <div>
+              $${(item.price * item.qty).toFixed(2)}
+            </div>
+          `;
+          itemsContainer.appendChild(row);
+        });
+      }
+
+      subtotalEl.textContent = `$${totals.subtotal.toFixed(2)}`;
+      discountEl.textContent = totals.discount
+        ? `-$${totals.discount.toFixed(2)}`
+        : "-$0.00";
+      taxEl.textContent = `$${totals.tax.toFixed(2)}`;
+      totalEl.textContent = `$${totals.total.toFixed(2)}`;
+
+      btn.addEventListener("click", function () {
+        alert("Order confirmed! (Demo only, no backend connected yet)");
+       
+      });
+    });
+  </script>
+</body>
+</html>

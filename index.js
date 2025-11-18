@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
   const $  = (sel, root = document) => root.querySelector(sel);
   const text = el => (el?.textContent || "").toLowerCase();
 
+ 
   const toggleBtn = $('.menu-toggle');
   const nav = $('.nav');
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
+ 
   const form = $(".contact-form");
   if (form) {
     const nameEl = form.querySelector('input[placeholder="Your Name"]');
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- 
+  
   const cards = $$(".product-card");
   const searchInput    = $("#search-input");
   const categorySelect = $("#category-filter");
@@ -71,19 +71,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const priceValue     = $("#price-value");
   const emptyState     = $("#empty-state");
 
-  
   const parsePrice = (str) => {
     const m = (str || "").match(/(\d+(\.\d+)?)/);
     return m ? parseFloat(m[1]) : 0;
   };
 
-  
   const FRUITS = new Set([
     "apple","banana","orange","grapes","grape","mango","watermelon","pineapple","strawberry"
   ]);
-  const inferCategory = (name) => FRUITS.has(name.toLowerCase()) ? "Fruits" : "Vegetables";
+  const inferCategory = (name) =>
+    FRUITS.has(name.toLowerCase()) ? "Fruits" : "Vegetables";
 
-  // extract meta from DOM once
+ 
   const meta = cards.map(card => {
     const name = (card.querySelector("h3")?.textContent || "").trim().toLowerCase();
     const priceText = card.querySelector("p")?.textContent || "";
@@ -92,12 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return { card, name, price, category };
   });
 
-
   const maxPrice = meta.reduce((m, x) => Math.max(m, x.price), 0) || 10;
   if (priceRange) {
     priceRange.max = Math.ceil(maxPrice + 0.5);
     priceRange.value = priceRange.max;
-    if (priceValue) priceValue.textContent = `$${Number(priceRange.value).toFixed(2)}`;
+    if (priceValue) {
+      priceValue.textContent = `$${Number(priceRange.value).toFixed(2)}`;
+    }
   }
 
   function applyFilters() {
@@ -121,42 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (searchInput)    searchInput.addEventListener("input",  applyFilters);
   if (categorySelect) categorySelect.addEventListener("change", applyFilters);
   if (priceRange)     priceRange.addEventListener("input",  () => {
-    if (priceValue) priceValue.textContent = `$${Number(priceRange.value).toFixed(2)}`;
+    if (priceValue) {
+      priceValue.textContent = `$${Number(priceRange.value).toFixed(2)}`;
+    }
     applyFilters();
   });
 
   applyFilters();
-
- 
-  const cartCountEl = $("#cart-count");
-  const getCart = () => {
-    try { return JSON.parse(localStorage.getItem("hami_cart") || "[]"); }
-    catch { return []; }
-  };
-  const setCart = (items) => localStorage.setItem("hami_cart", JSON.stringify(items));
-  const syncCartCount = () => {
-    const items = getCart();
-    const count = items.reduce((s, it) => s + (it.qty || 0), 0);
-    if (cartCountEl) cartCountEl.textContent = String(count);
-  };
-  const addToCart = (name) => {
-    const items = getCart();
-    const found = items.find(i => i.name === name);
-    if (found) found.qty += 1;
-    else items.push({ name, qty: 1 });
-    setCart(items);
-    syncCartCount();
-  };
-
-  
-  cards.forEach(card => {
-    const btn  = card.querySelector("button");
-    const name = (card.querySelector("h3")?.textContent || "Item").trim();
-    if (btn) btn.addEventListener("click", () => addToCart(name));
-  });
-  
-localStorage.removeItem("hami_cart"); 
-
-
-  syncCartCount();
 });
