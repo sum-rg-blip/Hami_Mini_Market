@@ -1,0 +1,114 @@
+[
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "category": "Vegetables",
+    "price": 2.5,
+    "image": "images/Download this image for Free on Zwin_io.jpg"
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "category": "Vegetables",
+    "price": 1.8,
+    "image": "images/Saiba como usar o tomate rasteiro no preparo de….jpg"
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "category": "Fruits",
+    "price": 3.0,
+    "image": "images/8b91d057-2d28-4f3a-98e1-3c7e6506fed8.jpg"
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "category": "Fruits",
+    "price": 2.0,
+    "image": "images/2f7ef009-c8c0-4a67-95be-6ff5c298be1e.jpg"
+  },
+  {
+    "id": "sweet-potato",
+    "name": "Sweet Potato",
+    "category": "Vegetables",
+    "price": 1.5,
+    "image": "images/_10 ways to add sweet potato to your weekend….jpg"
+  },
+  {
+    "id": "lettuce",
+    "name": "Lettuce",
+    "category": "Vegetables",
+    "price": 2.2,
+    "image": "images/Lettuce is a delicious and nutritious choice for….jpg"
+  },
+  {
+    "id": "mango",
+    "name": "Mango",
+    "category": "Fruits",
+    "price": 4.0,
+    "image": "images/974227fa-0cc8-4002-bea3-e310ef842c77.jpg"
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "category": "Vegetables",
+    "price": 1.9,
+    "image": "images/Fresh cucumbers with water droplets and slices on….jpg"
+  },
+  {
+    "id": "grapes",
+    "name": "Grapes",
+    "category": "Fruits",
+    "price": 3.5,
+    "image": "images/fae78fd2-af7c-462c-8048-893c0b0a5b9e.jpg"
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon",
+    "category": "Fruits",
+    "price": 1.6,
+    "image": "images/f3d8c738-e68b-4eb4-b44a-f458f663bfc5.jpg"
+  },
+  {
+    "id": "orange",
+    "name": "Orange",
+    "category": "Fruits",
+    "price": 2.7,
+    "image": "images/70a61d80-19da-48dd-a674-6e58e98a0af0.jpg"
+  },
+  {
+    "id": "pineapple",
+    "name": "Pineapple",
+    "category": "Fruits",
+    "price": 3.8,
+    "image": "images/ee635f10-6865-4017-9f95-ec665abacab9.jpg"
+  },
+  {
+    "id": "spinach",
+    "name": "Spinach",
+    "category": "Vegetables",
+    "price": 2.0,
+    "image": "images/dec12b0c-255c-4698-98e5-983eabb569c9.jpg"
+  },
+  {
+    "id": "bell-pepper",
+    "name": "Bell Pepper",
+    "category": "Vegetables",
+    "price": 2.4,
+    "image": "images/84ccfbea-240a-4821-8fe8-e769b59b7bd1.jpg"
+  },
+  {
+    "id": "strawberry",
+    "name": "Strawberry",
+    "category": "Fruits",
+    "price": 4.2,
+    "image": "images/fce740b6-9990-4cb7-8363-0fb5afa31f83.jpg"
+  },
+  {
+    "id": "onion",
+    "name": "Onion",
+    "category": "Vegetables",
+    "price": 1.4,
+    "image": "images/c1e975b5-10ea-411d-8f90-555a9340ed9a.jpg"
+  }
+]

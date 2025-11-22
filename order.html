@@ -52,6 +52,10 @@
       <button id="confirm-order-btn" class="cart-checkout-btn" style="margin-top: 16px;">
         Confirm Order
       </button>
+
+      <p id="order-confirm-message" class="order-confirm-message" hidden>
+        Order confirmed! Thank you for shopping with Hami MiniMarket.
+      </p>
     </section>
   </main>
 
@@ -65,42 +69,57 @@
       const taxEl = document.getElementById("summary-tax");
       const totalEl = document.getElementById("summary-total");
       const btn = document.getElementById("confirm-order-btn");
+      const msg = document.getElementById("order-confirm-message");
 
-      const items = CartModule.getItems();
-      const totals = CartModule.getTotals();
+      function renderSummary() {
+        const items = CartModule.getItems();
+        const totals = CartModule.getTotals();
 
-      if (!items.length) {
-        itemsContainer.innerHTML =
-          "<p>Your cart is empty. Go back and add some products.</p>";
-      } else {
-        items.forEach((item) => {
-          const row = document.createElement("div");
-          row.className = "cart-item";
-          row.innerHTML = `
-            <div class="cart-item-info">
-              <span class="cart-item-name">${item.name}</span>
-              <span class="cart-item-price">$${item.price.toFixed(
-                2
-              )} x ${item.qty}</span>
-            </div>
-            <div>
-              $${(item.price * item.qty).toFixed(2)}
-            </div>
-          `;
-          itemsContainer.appendChild(row);
-        });
+        itemsContainer.innerHTML = "";
+
+        if (!items.length) {
+          itemsContainer.innerHTML =
+            "<p>Your cart is empty. Go back and add some products.</p>";
+        } else {
+          items.forEach((item) => {
+            const row = document.createElement("div");
+            row.className = "cart-item";
+            row.innerHTML = `
+              <div class="cart-item-info">
+                <span class="cart-item-name">${item.name}</span>
+                <span class="cart-item-price">$${item.price.toFixed(
+                  2
+                )} x ${item.qty}</span>
+              </div>
+              <div>
+                $${(item.price * item.qty).toFixed(2)}
+              </div>
+            `;
+            itemsContainer.appendChild(row);
+          });
+        }
+
+        subtotalEl.textContent = `$${totals.subtotal.toFixed(2)}`;
+        discountEl.textContent = totals.discount
+          ? `-$${totals.discount.toFixed(2)}`
+          : "-$0.00";
+        taxEl.textContent = `$${totals.tax.toFixed(2)}`;
+        totalEl.textContent = `$${totals.total.toFixed(2)}`;
       }
 
-      subtotalEl.textContent = `$${totals.subtotal.toFixed(2)}`;
-      discountEl.textContent = totals.discount
-        ? `-$${totals.discount.toFixed(2)}`
-        : "-$0.00";
-      taxEl.textContent = `$${totals.tax.toFixed(2)}`;
-      totalEl.textContent = `$${totals.total.toFixed(2)}`;
+      renderSummary();
 
       btn.addEventListener("click", function () {
-        alert("Order confirmed! (Demo only, no backend connected yet)");
        
+        CartModule.clearCart();
+        renderSummary();
+
+        
+        msg.hidden = false;
+        alert("Order confirmed!");
+
+        
+        btn.disabled = true;
       });
     });
   </script>

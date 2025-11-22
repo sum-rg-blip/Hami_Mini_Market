@@ -164,6 +164,12 @@
     persist();
   }
 
+  
+  function clearCart() {
+    cart = [];
+    persist(); 
+  }
+
   function getItems() {
     return cart.slice();
   }
@@ -210,5 +216,6 @@
     getItems,
     getTotals,
     init,
+    clearCart, 
   };
 })(window.StorageModule);

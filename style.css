@@ -436,7 +436,7 @@ img{ max-width: 100%; height: auto; }
   transform: translateY(0);
 }
 
-/* Order Summary Page */
+
 .order-summary-container {
   max-width: 800px;
   margin: 40px auto;
@@ -451,4 +451,9 @@ img{ max-width: 100%; height: auto; }
 
 .order-summary-totals {
   margin-top: 24px;
+}
+.order-confirm-message {
+  margin-top: 12px;
+  color: #2e7d32;
+  font-weight: 600;
 }
